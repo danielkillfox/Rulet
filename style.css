@@ -1,0 +1,15 @@
+body{
+    background-color: snow;
+    color: darkred;
+    margin: 0;
+    padding: 0 20 20 20
+
+}
+/*roulette*/
+.Header_roulette{
+    text-align: center;
+}
+
+.roulette{
+    overflow: hidden;
+}
