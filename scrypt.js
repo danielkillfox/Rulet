@@ -8,12 +8,6 @@ const Drop_js = document.getAnimations("result");
 let r = Math.random()*100; //Генератор вероятности
 let total_chanse = 0 // Накапение шанса
 
-for(const item of ITEMS) { //перебераем предметы из массива
-    total_chanse = ITEMS.chance //Записываем шанс предмета в переменную
-    if (r < total_chanse) return item //Если Рандомное чисор меньше шанса предмета,его диапазон(chance: 60- это от 0 до 60).То возвращаем предмет
-}
-
-
 //ITEMS
 const ITEMS = {
     name:"gift_red" ,Image:"red_present.jpg",chance:30,
@@ -22,4 +16,17 @@ const ITEMS = {
 }
 
 
-const IMAGE = document.createElement("img")
+for(const item of ITEMS) { //перебераем предметы из массива
+    total_chanse = ITEMS.chance //Записываем шанс предмета в переменную
+    if (r < total_chanse) return item //Если Рандомное чисор меньше шанса предмета,его диапазон(chance: 60- это от 0 до 60).То возвращаем предмет
+}
+
+
+function buildLine(winner) {
+    roulette_bar.innerHTML = ""; //Очистка Ленты
+    for (let i = 0; i < TOTAL_ITEMS; I++){ //Создаем кол-во предметов которое есть в TOTAL_ITEMS
+        const item = 
+    }
+}
+
+const IMAGE = document.createElement("img") //Создает Картинку
