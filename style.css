@@ -78,3 +78,9 @@ body {
 .shake{
     animation: shake,5s,ease-in-out;
 }
+
+
+.Case{
+    scale: 30%;
+    animation: shake, 2s ease-in-out infinite;
+}

@@ -1,7 +1,5 @@
 let Rulette = document.getElementById("Peso")
 
-Rulette.hidden = true; 
-
 
 // ===== НАСТРОЙКИ =====
 const TOTAL_ITEMS = 40;      // сколько карточек в ленте
