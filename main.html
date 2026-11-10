@@ -2,36 +2,33 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
+        <title>Рулетка</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header class="Header_roulette">
-            <div class="roulette_window">
+        <header>
+        </header>
 
-                <div class="roulette_bar">
-                    
-                </div>
-                <div class="roulette_point">
-
-                </div>
-                <button id="Spin_Button">Make a Wish</button>
-                <button id="Cancel_Button">Cancel</button>
+        <main class="Header_roulette">
+            
+            <!-- Окно рулетки -->
+            <div class="roulette_window"  id="Peso">
+                <div id="roulette_bar" class="roulette_bar"></div>
+                <div class="roulette_point"></div>
             </div>
 
-            <dialog class="Drop">
+            <!-- Кнопки под окном, а не внутри -->
+            <button id="Spin_Button">Make a Wish</button>
+            <button id="Cancel_Button">Cancel</button>
+
+            <!-- Окно с результатом -->
+            <dialog id="drop_dialog" class="Drop">
                 <div class="Drop_Item" id="result"></div>
             </dialog>
 
-
-        </header>
-        <main>
-
         </main>
-        <footer>
+        <footer></footer>
 
-        </footer>
-        <script src="scrypt.js" defer>
-
-        </script>
+        <script src="scrypt.js" defer></script>
     </body>
 </html>
