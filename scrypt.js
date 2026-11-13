@@ -9,9 +9,9 @@ const SPIN_TIME = 5000;      // длительность прокрутки в �
 
 // Шансы не обязаны давать в сумме 100 — они нормализуются автоматически
 const ITEMS = [
-    { name: "gift_red",   image: "red_present.jpg",   chance: 30 },
-    { name: "gift_green", image: "green_present.jpg", chance: 10 },
-    { name: "gift_white", image: "white_present.jpg", chance: 50 },
+    { name: "gift_red",   image: "red_presrnt.jpg",   chance: 30 },
+    { name: "gift_green", image: "green_present.png", chance: 10 },
+    { name: "gift_white", image: "white_present.png", chance: 50 }
 ];
 
 // ===== ЭЛЕМЕНТЫ СТРАНИЦЫ =====
@@ -117,6 +117,33 @@ function reset() {
     rlb.style.transition = "none";
     rlb.style.transform = "translateX(0)";
 }
+
+// ===== ОТКРЫТИЕ ПОДАРКА =====
+const caseImg = document.getElementById("Case_Js");
+const rouletteSection = document.getElementById("rouletteSection");
+
+let giftOpened = false;
+
+caseImg.addEventListener("click", () => {
+    if (giftOpened) return;
+    giftOpened = true;
+
+    // 1. Тряска
+    caseImg.classList.add("shake");
+
+    // 2. Падение после тряски
+    setTimeout(() => {
+        caseImg.classList.remove("shake");
+        caseImg.classList.add("fall");
+    }, 600);
+
+    // 3. Показываем рулетку и запускаем прокрутку
+    setTimeout(() => {
+        caseImg.style.pointerEvents = "none";
+        rouletteSection.classList.add("show");
+        setTimeout(spin, 300);
+    }, 1600);
+});
 
 // ===== СОБЫТИЯ =====
 spinBtn.addEventListener("click", spin);
