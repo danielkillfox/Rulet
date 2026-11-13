@@ -3,28 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <title>Рулетка</title>
+        <!-- Подключаем таблицу стилей -->
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <!-- Шапка: подарок. По клику на него запускается тряска, падение и появление рулетки -->
         <header>
+            <!-- Обёртка нужна для масштабирования подарка через transform, не ломая анимации -->
             <div class="gift-wrap">
                 <img src="GIFT_Case.png" class="Case" id="Case_Js" alt="Подарок">
             </div>
         </header>
 
+        <!-- Основной блок рулетки. Изначально скрыт (display:none), показывается после открытия подарка -->
         <main class="Header_roulette" id="rouletteSection">
             
-            <!-- Окно рулетки -->
+            <!-- Окно рулетки: видна только часть ленты благодаря overflow:hidden -->
             <div class="roulette_window"  id="Peso">
+                <!-- Лента с карточками, которая будет сдвигаться по горизонтали -->
                 <div id="roulette_bar" class="roulette_bar"></div>
+                <!-- Неподвижный указатель по центру окна -->
                 <div class="roulette_point"></div>
             </div>
 
-            <!-- Кнопки под окном, а не внутри -->
+            <!-- Кнопки под окном рулетки -->
             <button id="Spin_Button">Make a Wish</button>
             <button id="Cancel_Button">Cancel</button>
 
-            <!-- Окно с результатом -->
+            <!-- Модальное окно с результатом выпадения -->
             <dialog id="drop_dialog" class="Drop">
                 <div class="Drop_Item" id="result"></div>
             </dialog>
@@ -32,6 +38,7 @@
         </main>
         <footer></footer>
 
+        <!-- defer: скрипт выполняется после разбора HTML, чтобы элементы уже существовали -->
         <script src="scrypt.js" defer></script>
     </body>
 </html>

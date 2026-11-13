@@ -1,40 +1,43 @@
+/* ===== БАЗОВЫЕ СТИЛИ СТРАНИЦЫ ===== */
 body {
-    background-image:url(Frost_Ground.jpg);
-    color: darkred;
+    background-image: url(Frost_Ground.jpg); /* фоновое изображение */
+    color: darkred;                         /* цвет текста */
     margin: 0;
-    padding: 20px; /* раньше было "0 20 20 20" — без единиц px это ошибка */
+    padding: 20px;                          /* отступы со всех сторон */
 }
 
 /* ===== РУЛЕТКА ===== */
+
+/* Контейнер рулетки: выравнивание по центру */
 .Header_roulette {
     text-align: center;
 }
 
-/* Окно рулетки — видна только часть ленты */
+/* Окно рулетки — видна только часть ленты (overflow: hidden обрезает лишнее) */
 .roulette_window {
-    position: relative;
+    position: relative;        /* для позиционирования указателя */
     width: 600px;
     max-width: 100%;
     height: 150px;
-    margin: 0 auto 20px;
-    overflow: hidden;
+    margin: 0 auto 20px;       /* центрирование по горизонтали */
+    overflow: hidden;          /* скрываем карточки вне окна */
     border: 3px solid darkred;
     background: #fff;
 }
 
-/* Лента с карточками */
+/* Лента с карточками, которая сдвигается через transform: translateX */
 .roulette_bar {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    display: flex;
-    will-change: transform;
+    display: flex;             /* карточки в ряд */
+    will-change: transform;    /* подсказка браузеру для оптимизации анимации */
 }
 
-/* Одна карточка — ширина должна совпадать с ITEM_WIDTH в JS */
+/* Одна карточка — ширина должна совпадать с ITEM_WIDTH в JS (120px) */
 .roulette_item {
-    flex: 0 0 120px;
+    flex: 0 0 120px;           /* фиксированная ширина, не сжимается */
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -43,22 +46,23 @@ body {
     border-right: 2px solid #ddd;
 }
 
+/* Картинка внутри карточки */
 .roulette_item img {
     max-width: 90px;
     max-height: 90px;
 }
 
-/* Неподвижный указатель по центру */
+/* Неподвижный указатель по центру окна */
 .roulette_point {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: 50%;                 /* ставим на середину */
     width: 3px;
-    transform: translateX(-50%);
+    transform: translateX(-50%);/* точно центрируем линию */
     background: gold;
-    z-index: 2;
-    pointer-events: none; /* чтобы не мешал кликам */
+    z-index: 2;                /* поверх ленты */
+    pointer-events: none;      /* не мешает кликам */
 }
 
 /* ===== ОКНО РЕЗУЛЬТАТА ===== */
@@ -66,54 +70,64 @@ body {
     width: 150px;
 }
 
+/* ===== АНИМАЦИИ ===== */
 
+/* Тряска: поворот влево-вправо */
 @keyframes shake {
     0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
-    75% { transform: rotate(-10deg); }
+    25%      { transform: rotate(-10deg); }
+    50%      { transform: rotate(10deg); }
+    75%      { transform: rotate(-10deg); }
 }
 
-
+/* Падение: сдвиг вниз + исчезновение */
 @keyframes fall {
     0%   { transform: translateY(0);     opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
-
+/* Вспомогательный класс тряски (на 5 секунд) */
 .shake {
     animation: shake 5s ease-in-out;
 }
 
 /* ===== ПОДАРОК ===== */
+
+/* Центрируем подарок по горизонтали */
 header {
     text-align: center;
 }
 
+/* Обёртка: масштабируем подарок, не затрагивая анимации transform на самом img */
 .gift-wrap {
     display: inline-block;
-    transform: scale(0.3);
+    transform: scale(0.3);      /* уменьшаем размер подарка */
     transform-origin: center;
 }
 
+/* Сам подарок: курсор-указатель, чтобы было понятно, что кликабельно */
 .Case {
     cursor: pointer;
 }
 
+/* Тряска подарка при клике (0.6 секунды) */
 .Case.shake {
     animation: shake 0.6s ease-in-out;
 }
 
+/* Падение подарка после тряски (1 секунда, остаётся в конечном состоянии) */
 .Case.fall {
     animation: fall 1s ease-in forwards;
 }
+
+/* ===== УПРАВЛЕНИЕ ВИДИМОСТЬЮ РУЛЕТКИ ===== */
 
 /* Рулетка скрыта, пока не откроют подарок */
 .Header_roulette {
     display: none;
 }
 
+/* Класс, который показывает рулетку */
 .Header_roulette.show {
     display: block;
 }
-
