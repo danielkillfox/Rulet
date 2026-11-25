@@ -27,6 +27,8 @@ const spinBtn = document.getElementById("Spin_Button");         // Кнопка 
 const cancelBtn = document.getElementById("Cancel_Button");     // Кнопка «Cancel»
 const dialog = document.getElementById("drop_dialog");          // Модальное окно результата
 const resultEl = document.getElementById("result");             // Куда кладём картинку и текст приза
+const closeResultBtn = document.getElementById("Close_Result");  // Кнопка «Закрыть» в окне результата
+const spinAgainBtn = document.getElementById("Spin_Again");      // Кнопка «Крутить снова»
 
 // ===== ПЕРЕМЕННЫЕ-ФЛАГИ =====
 // Флаг — обычная переменная true/false, которая запоминает состояние программы.
@@ -204,6 +206,15 @@ function reset() {
 caseImg.addEventListener("click", openRoulette); // Клик по подарку → показать рулетку
 spinBtn.addEventListener("click", spin);         // Клик по кнопке → запустить прокрутку
 cancelBtn.addEventListener("click", reset);      // Клик по Cancel → сбросить результат
+closeResultBtn.addEventListener("click", () => {  // Закрыть окно результата
+    dialog.close();
+    resultEl.innerHTML = "";
+});
+spinAgainBtn.addEventListener("click", () => {    // Закрыть результат и сразу крутить снова
+    dialog.close();
+    resultEl.innerHTML = "";
+    spin();
+});
 
 // ===== ЗАПУСК ПРИ ЗАГРУЗКЕ СТРАНИЦЫ =====
 // Скрипт подключён с defer, поэтому все элементы уже существуют в DOM.

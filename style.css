@@ -131,6 +131,42 @@ body {
     font-weight: bold;  /* Выделяем результат */
 }
 
+/* Кнопки в окне результата */
+.Drop_Actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.Drop_Actions button {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: darkred;
+    border: 2px solid gold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.Drop_Actions button:hover {
+    background: #a30000;
+}
+
+/* Подвал */
+.Site_Footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.Site_Footer p {
+    margin: 4px 0;
+}
+
 /* ===== АНИМАЦИИ =====
    @keyframes задаёт кадры: что происходит с элементом в начале, середине и конце.
    Браузер сам плавно переходит между кадрами. */
@@ -185,30 +221,72 @@ header {
     pointer-events: none;      /* SVG не перехватывает клики — они доходят до подарка */
 }
 
-/* Ряд подарков под ёлкой */
+/* Контейнер подарков вокруг ёлки */
 .gifts {
-    position: relative; /* Нужно, чтобы z-index работал */
+    position: relative; /* Точка отсчёта для абсолютного позиционирования подарков */
     z-index: 1;         /* Подарки поверх ёлок */
-    display: flex;      /* Выстраиваем подарки в ряд */
-    justify-content: center;
-    align-items: flex-end;
-    gap: 12px;
-    flex-wrap: wrap;
+    width: 400px;       /* Ширина сцены, как у SVG-ёлки */
+    height: 150px;      /* Место под подарки */
+    margin: 0 auto;     /* Центрируем сцену */
+}
+
+/* Все подарки (и главный, и дополнительные) стоят на «земле» */
+.gift-static,
+.Case {
+    position: absolute;
+    bottom: 8px;
+}
+
+/* Дальние подарки: меньше, выше, полупрозрачнее */
+.gift-back-left {
+    left: 4%;
+    width: 80px;
+    bottom: 46px;
+    opacity: 0.85;
+    z-index: 0;
+    transform: scale(0.9);
+}
+.gift-back-right {
+    right: 4%;
+    width: 80px;
+    bottom: 46px;
+    opacity: 0.85;
+    z-index: 0;
+    transform: scale(0.9);
+}
+
+/* Ближние подарки: крупнее, ближе к зрителю */
+.gift-front-left {
+    left: 18%;
+    width: 110px;
+    bottom: 0;
+    z-index: 2;
+}
+.gift-front-right {
+    right: 18%;
+    width: 110px;
+    bottom: 0;
+    z-index: 2;
+}
+
+/* Главный подарок по центру спереди */
+.Case {
+    left: 50%;
+    margin-left: -75px; /* Половина ширины 150px, чтобы центрировать без transform */
+    width: 150px;
+    bottom: 12px;
+    z-index: 3;         /* Поверх остальных */
 }
 
 /* Дополнительные (статичные) подарки */
 .gift-static {
-    width: 120px;
     height: auto;
     display: block;
 }
 
 /* Контейнер подарка (внутри — векторный SVG) */
 .Case {
-    position: relative;
-    z-index: 2;       /* Главный подарок поверх дополнительных */
     display: block;   /* Блочный элемент, чтобы анимации transform работали предсказуемо */
-    width: 150px;     /* Ширина подарка */
     height: auto;     /* Высота сохраняет пропорции SVG */
     cursor: default;  /* Во время падения подарок ещё не нажимаемый */
 }
